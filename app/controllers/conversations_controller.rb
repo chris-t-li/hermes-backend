@@ -8,6 +8,6 @@ class ConversationsController < ApplicationController
     # GET /conversations/:id
     def show
         conversation = Conversation.find(params[:id])
-        render json: conversation.messages, status: :ok
+        render json: conversation, serializer: ConversationThreadSerializer, status: :ok
     end
 end
