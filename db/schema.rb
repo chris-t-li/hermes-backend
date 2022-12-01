@@ -10,44 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_01_015233) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_01_164354) do
   create_table "conversations", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "message_receivers", force: :cascade do |t|
-    t.integer "message_id", null: false
-    t.integer "receiver_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["message_id"], name: "index_message_receivers_on_message_id"
-    t.index ["receiver_id"], name: "index_message_receivers_on_receiver_id"
-  end
-
   create_table "messages", force: :cascade do |t|
     t.text "content"
-    t.integer "sender_id", null: false
+    t.integer "user_id", null: false
     t.integer "conversation_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
-    t.index ["sender_id"], name: "index_messages_on_sender_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "receivers", force: :cascade do |t|
+  create_table "participants", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "conversation_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_receivers_on_user_id"
-  end
-
-  create_table "senders", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_senders_on_user_id"
+    t.index ["conversation_id"], name: "index_participants_on_conversation_id"
+    t.index ["user_id"], name: "index_participants_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,10 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_015233) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "message_receivers", "messages"
-  add_foreign_key "message_receivers", "receivers"
   add_foreign_key "messages", "conversations"
-  add_foreign_key "messages", "senders"
-  add_foreign_key "receivers", "users"
-  add_foreign_key "senders", "users"
+  add_foreign_key "messages", "users"
+  add_foreign_key "participants", "conversations"
+  add_foreign_key "participants", "users"
 end

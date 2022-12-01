@@ -1,4 +1,6 @@
 class User < ApplicationRecord
-    has_one :sender
-    has_one :receiver
+    has_many :participants
+    has_many :conversations, through: :participants
+    has_many :messages
+    has_many :conversations, through: :messages
 end

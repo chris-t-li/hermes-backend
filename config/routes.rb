@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  # resources :message_receivers
-  resources :conversations, only: [:index, :show]
-  resources :messages
-  # resources :receivers
-  # resources :senders
-  resources :users
+  # resources :participants
+  resources :conversations
+  resources :messages, except: [:index]
+  # resources :users
   
 end
