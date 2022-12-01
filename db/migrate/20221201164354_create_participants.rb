@@ -1,7 +1,6 @@
-class CreateMessages < ActiveRecord::Migration[7.0]
+class CreateParticipants < ActiveRecord::Migration[7.0]
   def change
-    create_table :messages do |t|
-      t.text :content
+    create_table :participants do |t|
       t.belongs_to :user, null: false, foreign_key: true
       t.belongs_to :conversation, null: false, foreign_key: true
 
