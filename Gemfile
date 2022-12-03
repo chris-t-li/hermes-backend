@@ -30,4 +30,5 @@ group :development do
 end
 
 gem "active_model_serializers"
-gem 'faker'
+gem "faker"
+gem "bcrypt", '~> 3.1.7'
