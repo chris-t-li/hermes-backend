@@ -1,5 +1,5 @@
 class ConversationsController < ApplicationController
-    before_action :authorize
+    # before_action :authorize
 
     # GET /conversations
     def index
@@ -39,7 +39,8 @@ class ConversationsController < ApplicationController
     private
 
     def authorize
-        return render json: { error: "Not authorized" }, status: :unauthorized, unless session.include? :user_id
+        byebug
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :username
     end
 
     def convo_params

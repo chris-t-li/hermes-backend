@@ -1,12 +1,12 @@
 class SessionsController < ApplicationController
-    # include BCrypt
 
     def create
         user = User.find_by(username: params[:username])
         if user&.authenticate(params[:password])
-            session[:username] = params[:username]
+            session[:username] ||= params[:username]
             # byebug
-            render json: user, status: :created
+            # cookies[:user_id] ||="hello"
+            render json: {session: session}, status: :created
         else
             render json: {error: {login: "Invalid username or password"}}, status: :unauthorized
         end
