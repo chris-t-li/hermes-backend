@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
     # POST /users
     def create
+        byebug
         user = User.create!(user_params)
         render json: user, status: :created
     end
