@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-    before_action :authorize, only: [:show]
-
+    before_action :authorize
+    skip_before_action :authorize, only: [:show]
+    
     # GET /users
     def index
         render json: User.all, status: :ok
@@ -51,7 +52,7 @@ class UsersController < ApplicationController
 
     def authorize
         return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
-      end
+    end
 
     def user_params
         params.permit(:username, :password, :password_confirmation)
