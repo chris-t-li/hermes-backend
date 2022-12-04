@@ -1,7 +1,7 @@
-puts "Seeding Users..."
-User.create(username: "David", password: "123", email: "david@email.com")
-User.create(username: "Taylor", password: "123", email: "taylor@email.com")
-User.create(username: "Rohan", password: "123", email: "rohan@email.com")
+# puts "Seeding Users..."
+# User.create(username: "David", password: "123", email: "david@email.com")
+# User.create(username: "Taylor", password: "123", email: "taylor@email.com")
+# User.create(username: "Rohan", password: "123", email: "rohan@email.com")
 
 puts "Seeding Conversations..."
 Conversation.create(title: "David & Taylor")
