@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :authorize
-    skip_before_action :authorize, only: [:show]
+    skip_before_action :authorize, only: [:show, :create]
     
     # GET /users
     def index
@@ -14,14 +14,12 @@ class UsersController < ApplicationController
 
     # GET /me
     def show
-        # byebug
-        user = User.find_by(id: session[:user_id])
+        user = User.find(session[:user_id])
         render json: user
     end
 
     # POST /users
     def create
-        # byebug
         user = User.create(user_params)
         if user.valid?
             session[:user_id] = user.id
