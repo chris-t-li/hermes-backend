@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     # PATCH /users/:id
     def update
         user = find_user
-        user.udpate!(user_params)
+        user.update!(user_params)
         render json: user, status: :accepted
     end
 

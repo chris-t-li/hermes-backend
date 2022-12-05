@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # resources :participants
   # resources :conversations
-  # resources :messages, except: [:index]
+  resources :messages, only: [:create]
   # # resources :users
 
   get "/me", to: "users#show"
