@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
     # GET /me
     def show
-        user = User.find(session[:user_id])
+        user = find_user
         render json: user
     end
 
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
         end
     end
 
-    # PATCH /users/:id
+    # PATCH /me
     def update
         user = find_user
         user.update!(user_params)
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     private
 
     def find_user
-        User.find(params[:id])
+        User.find(session[:user_id])
     end
 
     def authorize
@@ -54,6 +54,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.permit(:username, :password, :password_confirmation)
+        params.permit(:username, :password, :password_confirmation, :email, :avatar_url)
     end
 end

@@ -3,10 +3,10 @@
 # User.create(username: "Taylor", password: "123", email: "taylor@email.com")
 # User.create(username: "Rohan", password: "123", email: "rohan@email.com")
 
-puts "Seeding Conversations..."
-Conversation.create(title: "David & Taylor")
-Conversation.create(title: "David & Rohan")
-Conversation.create(title: "Group Chat")
+# puts "Seeding Conversations..."
+# Conversation.create(title: "David & Taylor")
+# Conversation.create(title: "David & Rohan")
+# Conversation.create(title: "Group Chat")
 
 puts "Seeding Participants"
 Participant.create(conversation_id: 1, user_id: 1)
