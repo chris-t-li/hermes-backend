@@ -1,13 +1,8 @@
 class MessagesController < ApplicationController
 
-    # GET /messages/:id [Do we need this?]
-    def show
-        render json: find_message, status: :ok
-    end
-
     # POST /messages
     def create
-        message = Message.create!(msg_params)
+        message = Message.create!(user_id: session[:user_id], conversation_id: params[:conversation_id], content: params[:content])
         render json: message, status: :created
     end
 
