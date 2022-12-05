@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
         if user&.authenticate(params[:password])
             session[:user_id] = user.id
             # byebug
-            cookies.permanent[:user] = user
+            # cookies[:user] ||= user
             render json: user, status: :created
         else
             render json: { error: "Invalid username or password" }, status: :unauthorized
@@ -21,10 +21,13 @@ class SessionsController < ApplicationController
 
     # GET /myconversations
     def show_my_convos
-        abort session.inspect
+        # byebug
+        # abort session.inspect
 
-        user = User.find_by(id: 1)
-        convo_id_array = Participant.where(user: user).map{|p| p.conversation_id}
-        render json: Conversation.find(convo_id_array), status: :ok
+        user = User.find_by(id: session[:user_id])
+        convos = user.conversations
+        render json: convos, status: :ok
+        # convo_id_array = Participant.where(user: user).map{|p| p.conversation_id}
+        # render json: Conversation.find(convo_id_array), status: :ok
     end
 end
