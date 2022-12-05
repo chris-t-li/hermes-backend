@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     # GET /me
     def show
         # byebug
-        user = User.find_by(session[:user_id])
+        user = User.find_by(id: session[:user_id])
         render json: user
     end
 
