@@ -7,4 +7,7 @@ class ConversationSerializer < ActiveModel::Serializer
   def most_recent_message
     self.object.messages.last
   end
+
+  # if created_at == Date.today, show time as HH:MM
+  # else show time as Yesterday, or date of when message was shown
 end
