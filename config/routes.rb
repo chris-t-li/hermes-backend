@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :messages, only: [:create]
   # # resources :users
 
-  get "/me", to: "users#show"
+  get "/me", to: "sessions#show"
   patch "/me", to: "users#update"
   post "/signup", to: "users#create"
   post "/login", to: "sessions#create"
