@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # resources :contacts, except: [:show]
   # resources :participants
   resources :conversations
-  resources :messages, only: [:create]
+  resources :messages, only: [:create, :destroy]
   # # resources :users
 
   get "/me", to: "sessions#show"

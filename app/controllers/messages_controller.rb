@@ -6,6 +6,13 @@ class MessagesController < ApplicationController
         render json: message, status: :created
     end
 
+    # DELETE /messages/:id
+    def destroy
+        message = find_message
+        message.destroy
+        head :no_content
+    end
+
     private
 
     def find_message
