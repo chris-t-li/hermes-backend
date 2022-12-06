@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contacts
   # resources :participants
   # resources :conversations
   resources :messages, only: [:create]
