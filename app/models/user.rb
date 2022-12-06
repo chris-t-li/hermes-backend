@@ -5,5 +5,7 @@ class User < ApplicationRecord
     has_many :messages
     # has_many :conversations, through: :messages
 
+    has_many :contacts
+    has_many :friends, through: :contacts
     validates :username, uniqueness: true
 end
