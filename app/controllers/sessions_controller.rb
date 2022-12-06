@@ -33,10 +33,15 @@ class SessionsController < ApplicationController
     # GET /mycontacts
     def show_my_contacts
         user = User.find_by(id: session[:user_id])
-        
+
         contacts = Contact.where(friend_id: session[:user_id]).or(Contact.where(user_id: session[:user_id]))
-        # byebug
+        array_of_user_id = []
+        contacts.map do |c| 
+            array_of_user_id << c.user_id
+            array_of_user_id << c.friend_id
+        end
         
-        render json: contacts, status: :ok
+        users = User.find(array_of_user_id.uniq.filter{|id| id!= session[:user_id] })
+        render json: users, status: :ok
     end
 end

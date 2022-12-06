@@ -1,5 +1,6 @@
 class ContactSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :show_contacts
   has_one :friend
   has_one :user
+
 end
