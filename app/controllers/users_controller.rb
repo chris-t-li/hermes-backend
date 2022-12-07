@@ -2,9 +2,11 @@ class UsersController < ApplicationController
     before_action :authorize
     skip_before_action :authorize, only: [:show, :create]
     
-    # GET /users
+    # GET /users?query=params[:query]
     def index
-        render json: User.all, status: :ok
+        # Returns users where username is like search query and excludes current logged in user
+        users = User.where("username like ?", "%#{params[:query]}%").and(User.where.not(id: session[:user_id]))
+        render json: users, status: :ok
     end
 
     # GET /users/:id
