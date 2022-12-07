@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :contacts, except: [:show]
+  resources :contacts
   # resources :participants
   resources :conversations
   resources :messages, only: [:create, :update, :destroy]

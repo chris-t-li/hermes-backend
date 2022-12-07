@@ -4,9 +4,8 @@ class UsersController < ApplicationController
     
     # GET /users?query=params[:query]
     def index
-        # Returns users where username is like search query and excludes current logged in user
         users = User.where("username like ?", "%#{params[:query]}%").and(User.where.not(id: session[:user_id]))
-        render json: users, status: :ok
+        render json: users, include: :contacts, status: :ok
     end
 
     # GET /users/:id
