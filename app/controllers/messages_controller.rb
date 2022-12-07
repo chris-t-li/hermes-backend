@@ -13,6 +13,13 @@ class MessagesController < ApplicationController
         head :no_content
     end
 
+    # PATCH /messages/:id
+    def update
+        message = find_message
+        message.update!(msg_params)
+        render json: message, status: :accepted
+    end
+
     private
 
     def find_message
