@@ -32,6 +32,7 @@ class SessionsController < ApplicationController
 
     # GET /mycontacts
     def show_my_contacts
+        
         user = User.find_by(id: session[:user_id])
 
         contacts = Contact.where(friend_id: session[:user_id]).or(Contact.where(user_id: session[:user_id]))
