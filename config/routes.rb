@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  # resources :contacts, except: [:show]
+  resources :contacts, except: [:show]
   # resources :participants
   resources :conversations
   resources :messages, only: [:create, :destroy]
-  # # resources :users
+  resources :users, only: [:index]
 
   get "/me", to: "sessions#show"
   patch "/me", to: "users#update"
