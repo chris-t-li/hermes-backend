@@ -47,7 +47,6 @@ class UsersController < ApplicationController
     private
 
     def find_user
-        # byebug
         User.find(session[:user_id])
     end
 
