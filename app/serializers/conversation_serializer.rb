@@ -1,5 +1,5 @@
 class ConversationSerializer < ActiveModel::Serializer
-  attributes :id, :title, :most_recent_message, :most_recent_message_timestamp
+  attributes :id, :title, :convo_url, :most_recent_message, :most_recent_message_timestamp
   has_many :messages
   has_many :participants
   has_many :users

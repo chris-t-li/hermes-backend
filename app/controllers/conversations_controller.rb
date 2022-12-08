@@ -52,7 +52,7 @@ class ConversationsController < ApplicationController
     end
 
     def convo_params
-        params.permit(:title, :participants)
+        params.permit(:title, :participants, :convo_url)
     end
 
     def find_convo
