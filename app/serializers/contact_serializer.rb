@@ -4,7 +4,6 @@ class ContactSerializer < ActiveModel::Serializer
   belongs_to :friend
 
   def contact_status
-    # byebug
     self.object.accepted
   end
 

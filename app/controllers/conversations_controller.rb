@@ -19,14 +19,11 @@ class ConversationsController < ApplicationController
             render json: {error: "Convo already exists"}, status: :unprocessable_entity
         else
             conversation = Conversation.create!(convo_params)
-                
             params[:participants].each do |userID| 
-                # params[:participants] is an array of participant user IDs provided from the frontend. This will need to include the logged in user (seession[:user_id])
                 Participant.create!(user_id: userID, conversation_id: conversation.id) 
             end
             # Current app constraint. Needs to initialize a message when creating conversation and participants. Otherwise unable to render.
             Message.create(content: "[...Start chat here...]", conversation_id: conversation.id, user_id: session[:user_id])
-            byebug
             render json: conversation, serializer: NewConversationSerializer, status: :created
         end
     end

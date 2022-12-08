@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
     def show
-        # byebug
         user = User.find(session[:user_id])
         render json: user
     end
@@ -25,30 +24,15 @@ class SessionsController < ApplicationController
     # GET /myconversations
     def show_my_convos
         # abort session.inspect
-        user = User.find_by(id: session[:user_id])
+        user = User.find(session[:user_id])
         conversations = user.conversations
-        # byebug
         render json: conversations, status: :ok
     end
 
     # GET /mycontacts
     def show_my_contacts
-        
         user = User.find_by(id: session[:user_id])
-
         contacts = Contact.where(friend_id: session[:user_id]).or(Contact.where(user_id: session[:user_id]))
-
         render json: contacts, status: :ok
-        # array_of_user_id = []
-        # contacts.map do |c| 
-        #     array_of_user_id << c.user_id
-        #     array_of_user_id << c.friend_id
-        # end
-        
-        # users = User.find(array_of_user_id.uniq.filter{|id| id!= session[:user_id] })
-        # byebug
-
-
-        # render json: users, status: :ok
     end
 end
