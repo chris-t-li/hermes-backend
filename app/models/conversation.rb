@@ -5,5 +5,5 @@ class Conversation < ApplicationRecord
     has_many :participants, dependent: :destroy
     has_many :users, through: :participants
 
-    validates :title, presence: true
+    validates :title, presence: true, uniqueness: true
 end

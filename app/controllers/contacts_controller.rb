@@ -19,7 +19,7 @@ class ContactsController < ApplicationController
     # POST /contacts/
     def create
         # byebug
-        contact = Contact.create!(user_id: session[:user_id], friend_id: params[:friend_id], accepted: "Pending")
+        contact = Contact.create!(user_id: session[:user_id], friend_id: params[:friend_id])
         # add validations to contact model so that you cannot create an existing contact record
         render json: contact, status: :created
     end

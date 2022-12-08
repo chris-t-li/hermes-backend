@@ -3,7 +3,7 @@ class UserSerializer < ActiveModel::Serializer
   has_many :contacts
   # def contact_status
   #   # byebug
-  #   # self.object.contacts
+  #   self.object.contacts
   # end
   # has_many :contacts
 
