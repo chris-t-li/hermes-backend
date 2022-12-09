@@ -18,7 +18,9 @@ class ConversationsController < ApplicationController
         if isExist 
             render json: {error: "Convo already exists"}, status: :unprocessable_entity
         else
-            conversation = Conversation.create!(convo_params)
+            # byebug
+            conversation = Conversation.create!(title: params[:title])
+            
             params[:participants].each do |userID| 
                 Participant.create!(user_id: userID, conversation_id: conversation.id) 
             end
@@ -49,7 +51,7 @@ class ConversationsController < ApplicationController
     end
 
     def convo_params
-        params.permit(:title, :participants, :convo_url)
+        params.permit(:title, :convo_url)
     end
 
     def find_convo
