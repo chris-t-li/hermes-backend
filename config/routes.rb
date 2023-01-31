@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get '/myconversations', to: 'sessions#show_my_convos'
   get "/mycontacts", to: 'sessions#show_my_contacts'
+
+  
 end
