@@ -3,6 +3,8 @@ class MessagesController < ApplicationController
     # POST /messages
     def create
         message = Message.create!(user_id: session[:user_id], conversation_id: params[:conversation_id], content: params[:content])
+        # broadcast new message to any subscribers of our ActionCable channel 'MessageFeedChannel'
+        MessageFeedChannel.broadcast(user_id: session[:user_id], message)
         render json: message, status: :created
     end
 

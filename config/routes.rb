@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   get '/myconversations', to: 'sessions#show_my_convos'
   get "/mycontacts", to: 'sessions#show_my_contacts'
 
-  
+  mount ActionCable.server => "/cable"
 end

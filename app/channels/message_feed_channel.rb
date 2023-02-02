@@ -1,8 +1,10 @@
 class MessageFeedChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "some_channel"
     puts 'subbed' * 10
     p params
+    # subscribe to specific user's message feed
+    user = User.find_by(id: params[:user_id])
+    stream_for user
   end
 
   def unsubscribed

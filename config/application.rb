@@ -11,7 +11,7 @@ require "action_controller/railtie"
 # require "action_mailbox/engine"
 # require "action_text/engine"
 require "action_view/railtie"
-# require "action_cable/engine"
+require "action_cable/engine"
 require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -46,6 +46,8 @@ module MessageApp
     # config.middleware.use config.session_store, config.session_options
     # Use SameSite=Strict for all cookies to help protect against CSRF
     config.action_dispatch.cookies_same_site_protection = :strict
+
+    config.autoload_paths += %W(#{config.root}/app/channels)
 
   end
 end
